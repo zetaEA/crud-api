@@ -1,0 +1,6 @@
+body { font-family: Arial; max-width: 600px; margin: auto; padding: 20px; }
+input, textarea { display: block; margin: 10px 0; width: 100%; }
+button { margin: 5px 0; }
+ul { list-style: none; padding: 0; }
+li { margin: 5px 0; padding: 5px; border-bottom: 1px solid #ccc; }
+label { font-weight: bold; margin-top: 10px; display: block; }

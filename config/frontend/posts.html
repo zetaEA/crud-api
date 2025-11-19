@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Posts</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Создать пост</h2>
+    <form id="postForm">
+        <input type="text" id="postTitle" placeholder="Title" required>
+        <textarea id="postContent" placeholder="Content" required></textarea>
+
+        <label for="postAuthor">Автор:</label>
+        <input list="authorsList" id="postAuthor" placeholder="Введите имя или выберите" required>
+        <datalist id="authorsList">
+            <option value="Nikak">
+            <option value="Zeta">
+            <option value="Admin">
+        </datalist>
+
+        <button type="submit">Create Post</button>
+    </form>
+
+    <h2>Список постов</h2>
+    <ul id="postsList"></ul>
+
+    <button id="logoutBtn">Logout</button>
+
+    <script src="app.js"></script>
+</body>
+</html>
