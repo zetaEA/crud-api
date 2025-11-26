@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SocialHub - Chat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>💭 SocialHub - Чат</h1>
+        <p>Общайтесь в реальном времени</p>
+        <div class="nav">
+            <a href="posts.html">📝 Посты</a>
+            <a href="chat.html" style="background: rgba(255, 255, 255, 0.3);">💬 Чат</a>
+            <button type="button" id="logoutBtn">🚪 Выход</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Search Box -->
+        <div class="search-box">
+            <input type="text" id="userSearchInput" placeholder="Введите ID пользователя...">
+            <button type="button" id="searchBtn" class="btn-primary">🔍 Открыть чат</button>
+        </div>
+
+        <!-- Chat Layout -->
+        <div class="chat-layout">
+            <!-- Conversations Panel -->
+            <div class="conversations-panel">
+                <div class="conversations-header">
+                    <h3>💬 Диалоги</h3>
+                </div>
+                <div class="conversations-list" id="conversationsList"></div>
+            </div>
+
+            <!-- Chat Panel -->
+            <div class="chat-panel">
+                <div class="chat-header">
+                    <h4 id="currentChatTitle">Выберите диалог</h4>
+                </div>
+                <div class="messages-list" id="messagesList"></div>
+                <div class="chat-input-box" id="messageInputArea" style="display: none;">
+                    <textarea id="messageInput" placeholder="Введите сообщение..." required></textarea>
+                    <button type="button" id="sendBtn" class="btn-primary">📤 Отправить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,23 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login / Register</title>
+    <title>SocialHub - Login & Register</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>Регистрация</h2>
-    <form id="registerForm">
-        <input type="text" id="regUsername" placeholder="Username">
-        <input type="password" id="regPassword" placeholder="Password">
-        <button type="submit">Register</button>
-    </form>
+    <div class="header">
+        <h1>🚀 SocialHub</h1>
+        <p>Connect. Share. Chat.</p>
+    </div>
 
-    <h2>Логин</h2>
-    <form id="loginForm">
-        <input type="text" id="loginUsername" placeholder="Username">
-        <input type="password" id="loginPassword" placeholder="Password">
-        <button type="submit">Login</button>
-    </form>
+    <div class="container">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 900px; margin: 0 auto;">
+            <!-- Register Form -->
+            <div class="form-container">
+                <h2>✨ Создать аккаунт</h2>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label>Ваше имя</label>
+                        <input type="text" id="regUsername" placeholder="Введите ваше имя" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input type="password" id="regPassword" placeholder="Придумайте пароль" required>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%;">Зарегистрироваться</button>
+                </form>
+            </div>
+
+            <!-- Login Form -->
+            <div class="form-container">
+                <h2>🔐 Вход</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label>Ваше имя</label>
+                        <input type="text" id="loginUsername" placeholder="Введите ваше имя" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input type="password" id="loginPassword" placeholder="Введите пароль" required>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%;">Войти</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <script src="app.js"></script>
 </body>

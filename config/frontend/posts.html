@@ -1,30 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Posts</title>
+    <title>SocialHub - Posts</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>Создать пост</h2>
-    <form id="postForm">
-        <input type="text" id="postTitle" placeholder="Title" required>
-        <textarea id="postContent" placeholder="Content" required></textarea>
+    <div class="header">
+        <h1>📝 SocialHub - Посты</h1>
+        <p>Делитесь идеями, общайтесь, вдохновляйтесь</p>
+        <div class="nav">
+            <a href="posts.html" style="background: rgba(255, 255, 255, 0.3);">💬 Посты</a>
+            <a href="chat.html">💭 Чат</a>
+            <button type="button" id="logoutBtn">🚪 Выход</button>
+        </div>
+    </div>
 
-        <label for="postAuthor">Автор:</label>
-        <input list="authorsList" id="postAuthor" placeholder="Введите имя или выберите" required>
-        <datalist id="authorsList">
-            <option value="Nikak">
-            <option value="Zeta">
-            <option value="Admin">
-        </datalist>
+    <div class="container">
+        <!-- Create Post Form -->
+        <div class="form-box">
+            <h3>✏️ Поделиться новой идеей</h3>
+            <form id="postForm">
+                <div class="form-group">
+                    <label>Заголовок</label>
+                    <input type="text" id="postTitle" placeholder="Назовите ваш пост..." required>
+                </div>
+                <div class="form-group">
+                    <label>Содержание</label>
+                    <textarea id="postContent" placeholder="Напишите что-нибудь интересное..." required></textarea>
+                </div>
+                <button type="submit" class="btn-primary">📤 Опубликовать</button>
+            </form>
+        </div>
 
-        <button type="submit">Create Post</button>
-    </form>
-
-    <h2>Список постов</h2>
-    <ul id="postsList"></ul>
-
-    <button id="logoutBtn">Logout</button>
+        <!-- Posts Grid -->
+        <h2 style="margin-bottom: 30px; color: var(--primary);">📚 Все посты</h2>
+        <div class="posts-grid" id="postsList"></div>
+    </div>
 
     <script src="app.js"></script>
 </body>
