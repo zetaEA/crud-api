@@ -57,11 +57,78 @@ python manage.py runserver 0.0.0.0:8000
 - `config/asgi.py`, `config/routing.py` — маршрутизация websocket
 - `frontend/app.js` — клиент WebSocket + оптимистичный UI
 
-## Требования
+# Проект: SocialHub (Django + DRF)
 
-Зависимости перечислены в `requirements.txt`.
+Это небольшой проект — REST API с функционалом публикации постов и онлайн-чата.
 
-Если нужно — могу помочь:
-- настроить передачу токена в заголовке для WebSocket (middleware),
-- подключить Redis для Channels,
-- подготовить инструкцию для деплоя.
+Поддерживаемые части:
+ - Пользователи (регистрация, токенная аутентификация)
+ - CRUD для постов
+ - Реaltime-чат (через WebSocket / Django Channels)
+
+## Как запустить
+
+1) Подготовка окружения
+
+- Клонируйте репозиторий и перейдите в папку `config`:
+
+```bash
+git clone https://github.com/zetaEA/crud-api.git
+cd "crud-api/config"
+```
+
+- Создайте и активируйте виртуальное окружение (пример):
+
+```bash
+python3 -m venv ../venv
+source ../venv/bin/activate
+```
+
+2) Установка зависимостей
+
+Установите зависимости из `requirements.txt`:
+
+```bash
+pip install -r requirements.txt
+```
+
+3) Миграции и запуск
+
+Примените миграции и запустите сервер:
+
+```bash
+python manage.py migrate
+python manage.py runserver 0.0.0.0:8000
+```
+
+4) Фронтенд (локально)
+
+Файлы фронтенда находятся в `config/frontend`. Для разработки можно использовать простой статический сервер (рекомендуется отключить Live Server в VS Code, чтобы избежать авто‑перезагрузки при изменениях в `db.sqlite3`):
+
+```bash
+cd frontend
+python3 -m http.server 5500
+# Откройте http://127.0.0.1:5500/chat.html
+```
+
+5) Аутентификация
+
+- Регистрация: `POST /api/users/register/`
+- Вход (получение токена): `POST /api-token-auth/` с полями `username` и `password`. Токен сохраняется в `localStorage` фронтенда.
+
+6) Чат (WebSocket)
+
+Проект поддерживает WebSocket через Django Channels. В development используется in‑memory channel layer, для продакшна рекомендуется Redis.
+
+- WebSocket URL (dev):
+	`ws://127.0.0.1:8000/ws/messaging/conversations/<conversation_id>/?token=<your_token>`
+
+- Клиентский код (в `frontend/app.js`) при открытии диалога подключается к WebSocket и получает/отправляет сообщения в реальном времени. Если WebSocket недоступен, используется HTTP fallback (POST к `/api/messaging/conversations/<id>/messages/`).
+
+7) Примечания и рекомендации
+
+- Текущая аутентификация WebSocket реализована через query param `token` — это удобно для разработки, но в продакшне лучше реализовать безопасную авторизацию (например, по заголовку `Authorization` и использовать `wss`).
+- Для многопроцессного развёртывания и масштабирования используйте `channels_redis` и Redis как бекенд channel layer.
+- Если Live Server VS Code вызывает автоматическую перезагрузку страницы при локальных изменениях в базе (`db.sqlite3`), остановите Live Server или добавьте исключения в его настройки.
+
+Если нужно — могу подготовить инструкцию по деплою (Gunicorn/Uvicorn + Daphne/nginx + Redis) и помочь переключить WebSocket‑аутентификацию на безопасный вариант.
